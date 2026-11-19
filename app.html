@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seu espaço LifeHub para organizar tarefas e prioridades.">
+    <title>LifeHub | Meu espaço</title>
+    <link rel="icon" type="image/png" href="Logotipo LH Azul com Checkmark.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+    <header class="header app-header">
+        <a href="index.html" class="logo" aria-label="LifeHub, página inicial">
+            <img class="logo-image" src="Logo minimalista LifeHub em azul.png" alt="LifeHub">
+        </a>
+        <nav class="app-tabs" aria-label="Abas do LifeHub">
+            <a class="app-tab is-active" href="app.html" aria-current="page">Tarefas</a>
+            <a class="app-tab" href="fnanceiro.html">Financeiro</a>
+        </nav>
+        <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Apresentação</a>
+    </header>
+
+    <main class="app-page">
+        <section class="app-welcome">
+            <div>
+                <span class="tagline">SEU ESPAÇO PESSOAL</span>
+                <h1>Olá! <span>Vamos com calma.</span></h1>
+                <p>Organize o que importa e celebre cada passo do seu dia.</p>
+            </div>
+            <div class="welcome-decoration" aria-hidden="true">?</div>
+        </section>
+
+        <section class="progress-grid" aria-label="Resumo do seu espaço">
+            <article class="progress-card">
+                <span class="progress-icon icon-lilac" aria-hidden="true">☷</span>
+                <div><span class="progress-label">TAREFAS NO TOTAL</span><strong data-total-count>0</strong></div>
+            </article>
+            <article class="progress-card">
+                <span class="progress-icon icon-peach" aria-hidden="true">✓</span>
+                <div><span class="progress-label">CONCLUÍDAS</span><strong data-completed-count>0</strong></div>
+            </article>
+            <article class="progress-card">
+                <span class="progress-icon icon-green" aria-hidden="true">↗</span>
+                <div><span class="progress-label">PENDENTES</span><strong data-pending-total>0</strong></div>
+            </article>
+            <a class="progress-card finance-shortcut" href="fnanceiro.html">
+                <span class="progress-icon icon-lilac" aria-hidden="true">$</span>
+                <div><span class="progress-label">GASTOS NO MÊS</span><strong data-finance-total>R$ 0,00</strong></div>
+                <span class="shortcut-arrow" aria-hidden="true">→</span>
+            </a>
+        </section>
+
+        <section class="task-panel" aria-labelledby="tasks-heading">
+            <div class="panel-heading">
+                <div>
+                    <span class="tagline">O QUE ESTÁ NA SUA LISTA?</span>
+                    <h2 id="tasks-heading">Minhas tarefas</h2>
+                </div>
+                <span class="task-count" data-pending-count>0 pendentes</span>
+            </div>
+
+            <form class="task-form" data-task-form>
+                <label class="sr-only" for="task-title">Nome da tarefa</label>
+                <input id="task-title" name="title" type="text" maxlength="100" placeholder="Ex.: caminhar por 20 minutos" required>
+                <label class="sr-only" for="task-date">Prazo da tarefa</label>
+                <input id="task-date" name="dueDate" type="date" aria-label="Prazo (opcional)">
+                <button class="btn-primary add-button" type="submit"><span aria-hidden="true">+</span> Adicionar</button>
+            </form>
+            <p class="app-message" data-app-message role="status" aria-live="polite"></p>
+
+            <div class="task-toolbar">
+                <div class="task-filters" role="group" aria-label="Filtrar tarefas">
+                    <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Todas</button>
+                    <button class="filter-button" type="button" data-filter="pending" aria-pressed="false">Pendentes</button>
+                    <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">Concluídas</button>
+                </div>
+                <button class="clear-button" type="button" data-clear-completed>Limpar concluídas</button>
+            </div>
+            <ul class="task-list" data-task-list aria-live="polite"></ul>
+            <div class="empty-state" data-empty-state hidden>
+                <span aria-hidden="true"></span>
+                <h3>Por aqui, tudo tranquilo.</h3>
+                <p>Adicione uma tarefa ou escolha outro filtro para continuar.</p>
+            </div>
+        </section>
+        <p class="privacy-note"><span aria-hidden="true">⌑</span> Suas tarefas são salvas apenas neste dispositivo.</p>
+    </main>
+
+    <script src="js/app.js" defer></script>
+</body>
+</html>

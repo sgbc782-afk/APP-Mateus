@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Organize seus gastos e acompanhe seu orçamento mensal no LifeHub.">
+    <title>LifeHub | Controle financeiro</title>
+    <link rel="icon" type="image/png" href="Logotipo LH Azul com Checkmark.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/finance.css">
+</head>
+<body>
+    <header class="header app-header">
+        <a href="index.html" class="logo" aria-label="LifeHub, página inicial">
+            <img class="logo-image" src="Logo minimalista LifeHub em azul.png" alt="LifeHub">
+        </a>
+        <nav class="app-tabs" aria-label="Abas do LifeHub">
+            <a class="app-tab" href="app.html">Tarefas</a>
+            <a class="app-tab is-active" href="fnanceiro.html" aria-current="page">Financeiro</a>
+        </nav>
+        <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Apresentação</a>
+    </header>
+
+    <main class="app-page">
+        <section class="app-welcome">
+            <div>
+                <span class="tagline">SEU DINHEIRO, COM MAIS CLAREZA</span>
+                <h1>Controle seus <span>gastos.</span></h1>
+                <p>Acompanhe entradas, despesas e seu orçamento em um só lugar.</p>
+            </div>
+            <div class="welcome-decoration" aria-hidden="true">R$</div>
+        </section>
+
+        <section class="finance-summary" aria-label="Resumo financeiro do mês">
+            <article class="finance-summary-card">
+                <span class="finance-summary-icon income-icon" aria-hidden="true">↓</span>
+                <div><span class="progress-label">ENTRADAS NO MÊS</span><strong data-income-total>R$ 0,00</strong></div>
+            </article>
+            <article class="finance-summary-card">
+                <span class="finance-summary-icon expense-icon" aria-hidden="true">↑</span>
+                <div><span class="progress-label">DESPESAS NO MÊS</span><strong data-expense-total>R$ 0,00</strong></div>
+            </article>
+            <article class="finance-summary-card balance-card">
+                <span class="finance-summary-icon balance-icon" aria-hidden="true">＝</span>
+                <div><span class="progress-label">SALDO DO MÊS</span><strong data-balance-total>R$ 0,00</strong></div>
+            </article>
+        </section>
+
+        <section class="budget-panel" aria-labelledby="budget-heading">
+            <div class="panel-heading">
+                <div>
+                    <span class="tagline">UM LIMITE QUE FAZ SENTIDO PARA VOCÊ</span>
+                    <h2 id="budget-heading">Orçamento mensal</h2>
+                </div>
+                <form class="budget-form" data-budget-form>
+                    <label for="monthly-budget">Limite de gastos</label>
+                    <div class="budget-input-wrap">
+                        <span aria-hidden="true">R$</span>
+                        <input id="monthly-budget" name="budget" type="number" min="0.01" step="0.01" inputmode="decimal" required aria-label="Limite de gastos mensal">
+                        <button class="budget-save" type="submit">Salvar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="budget-progress-row">
+                <span data-budget-caption>R$ 0,00 de R$ 0,00 utilizados</span>
+                <strong data-budget-percent>0%</strong>
+            </div>
+            <div class="budget-track" role="progressbar" aria-label="Orçamento mensal utilizado" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-budget-track>
+                <span data-budget-fill></span>
+            </div>
+            <p class="budget-note" data-budget-note>Registre suas despesas para acompanhar seu orçamento.</p>
+        </section>
+
+        <section class="task-panel finance-panel" aria-labelledby="transactions-heading">
+            <div class="panel-heading">
+                <div>
+                    <span class="tagline">CADA LANÇAMENTO CONTA</span>
+                    <h2 id="transactions-heading">Lançamentos</h2>
+                </div>
+            </div>
+
+            <form class="transaction-form" data-transaction-form>
+                <label class="sr-only" for="transaction-description">Descrição</label>
+                <input id="transaction-description" name="description" type="text" maxlength="80" placeholder="Ex.: mercado, salário..." required>
+                <label class="sr-only" for="transaction-category">Categoria</label>
+                <select id="transaction-category" name="category" required>
+                    <option value="Moradia">Moradia</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Lazer">Lazer</option>
+                    <option value="Salário">Salário</option>
+                    <option value="Outros">Outros</option>
+                </select>
+                <label class="sr-only" for="transaction-type">Tipo de lançamento</label>
+                <select id="transaction-type" name="type" required>
+                    <option value="expense">Despesa</option>
+                    <option value="income">Entrada</option>
+                </select>
+                <label class="sr-only" for="transaction-amount">Valor em reais</label>
+                <input id="transaction-amount" name="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Valor (R$)" required>
+                <label class="sr-only" for="transaction-date">Data</label>
+                <input id="transaction-date" name="date" type="date" required>
+                <button class="btn-primary add-button" type="submit"><span aria-hidden="true">+</span> Adicionar</button>
+            </form>
+            <p class="app-message" data-finance-message role="status" aria-live="polite"></p>
+
+            <div class="transaction-toolbar">
+                <label for="transaction-month">Exibir mês</label>
+                <input id="transaction-month" type="month" data-month-filter aria-label="Filtrar lançamentos por mês">
+                <button class="clear-button" type="button" data-show-all>Ver todos</button>
+            </div>
+
+            <div class="transaction-table-wrap">
+                <table class="transaction-table">
+                    <thead>
+                        <tr><th scope="col">Descrição</th><th scope="col">Categoria</th><th scope="col">Data</th><th scope="col">Valor</th><th scope="col" aria-label="Ações"></th></tr>
+                    </thead>
+                    <tbody data-transaction-list></tbody>
+                </table>
+                <div class="empty-state" data-finance-empty>
+                    <span aria-hidden="true">$</span>
+                    <h3>Nenhum lançamento neste mês.</h3>
+                    <p>Adicione uma entrada ou despesa para começar seu controle.</p>
+                </div>
+            </div>
+        </section>
+        <p class="privacy-note"><span aria-hidden="true">⌑</span> Seus dados financeiros são salvos apenas neste dispositivo.</p>
+    </main>
+
+    <script src="js/finance.js" defer></script>
+</body>
+</html>
